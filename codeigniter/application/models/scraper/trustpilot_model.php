@@ -32,5 +32,13 @@
 			$this->db->insert('trustpilot_reviews', $review);
 		}
 		
+		public function get_urls()
+		{
+			$this->db->select('url');
+			$this->db->from('trustpilot_urls');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+		
 		
 	}
