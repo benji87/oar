@@ -12,7 +12,7 @@ class Homepage extends CI_Controller {
 	public function index()
 	{
 		
-		$apiCall = read_file('http://oar/api/agents');
+		$apiCall = read_file(base_url() . '/api/agents');
 		$data['agents'] = json_decode($apiCall, true);
 		
 		$this->load->view('templates/header');

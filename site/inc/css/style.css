@@ -1,7 +1,10 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,900,700,800);
+@import url(https://fonts.googleapis.com/css?family=Heebo:400,900,700,800);
 html, body {
   font-size: 16px;
   height: 100%; }
+
+.main-header {
+  background-color: #CDD0DC; }
 
 .wrapper {
   max-width: 1260px;
@@ -28,13 +31,19 @@ html, body {
   top: 50%;
   z-index: 100; }
 
-.heading-four, .heading-three {
-  font-family: 'Raleway', helvetica, arial, sans-serif;
-  font-weight: 800;
+.heading__one, .heading-four, .heading-three {
+  font-family: 'Heebo', helvetica, arial, sans-serif;
+  font-weight: 400;
   text-rendering: optimizeLegibility;
   margin-bottom: 0.938rem;
   color: #333; }
 
+.heading__one {
+  font-size: 2.188rem; }
+
+@media screen and (min-width: 768px) {
+  .heading__one {
+    font-size: 2.618rem; } }
 .filter-section {
   padding-bottom: 0.938rem;
   margin-bottom: 0.938rem;
@@ -71,5 +80,94 @@ html, body {
   margin: 0.938rem 0;
   display: block;
   background-color: #333; }
+
+.ratings-5, .ratings-4, .ratings-3, .ratings-2, .ratings-1 {
+  background: url(../img/rating-stars.svg);
+  background-size: 100%;
+  width: 8.25rem;
+  height: 1.5rem;
+  display: block; }
+
+.ratings-4 {
+  background-position-y: -2.125rem; }
+
+.ratings-3 {
+  background-position-y: -4.25rem; }
+
+.ratings-2 {
+  background-position-y: -6.375rem; }
+
+.ratings-1 {
+  background-position-y: -8.5rem; }
+
+.reviews-logo {
+  width: 179px;
+  height: 20px; }
+
+.reviews__header {
+  padding-bottom: 2rem; }
+
+.reviews__iframe {
+  width: calc(100% - 4rem);
+  height: 100%;
+  position: absolute;
+  left: 2rem;
+  top: 13rem; }
+
+.review {
+  padding: 2rem 0;
+  border-bottom: 1px solid #CDD0DC;
+  position: relative; }
+  .review:last-child {
+    border-bottom: 0; }
+
+.review-name {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: block; }
+
+.review-date {
+  position: absolute;
+  right: 2rem;
+  top: 0;
+  font-weight: 600; }
+
+.btn__primary {
+  display: inline-block;
+  font-weight: 200;
+  padding: 1rem 2rem;
+  color: #fff;
+  border: 0;
+  border-radius: 8rem;
+  box-shadow: 0px 1px 2px 0px rgba(228, 228, 228, 0.5); }
+
+.btn__primary {
+  background-color: #3498DB;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color, 1s, linear; }
+  .btn__primary:hover {
+    background-color: #16527a; }
+
+.remodal {
+  max-width: 50%;
+  height: 1px;
+  min-height: 100%;
+  overflow: scroll; }
+
+@media screen and (max-width: 768px) {
+  .remodal-wrapper {
+    padding: 0; }
+
+  .remodal {
+    vertical-align: top;
+    height: 100%;
+    max-width: 100%; } }
+.reviews-logo {
+  display: block; }
+
+.reviews-logo {
+  background: url("../img/trustpilot-logo.png") 0 0 no-repeat; }
 
 /*# sourceMappingURL=style.css.map */

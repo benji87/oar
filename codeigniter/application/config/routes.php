@@ -65,3 +65,5 @@ $route['translate_uri_dashes'] = TRUE;
 //$route['api/agents/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/agents/id/$1/format/$3$4'; // Basic agents request
 
 $route['scraper/trustpilot/(:num)'] = 'scraper/trustpilot/$1';
+
+$route['trustpilot-reviews/(:num)'] = 'trustpilot-reviews/index/$1';

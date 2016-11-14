@@ -1,10 +1,15 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,900,700,800);
+@import url(https://fonts.googleapis.com/css?family=Heebo:400,900,700,800);
 
 $default-margin: .938rem;
+$blue: #CDD0DC;
 
 html, body {
 	font-size: 16px;
 	height: 100%;
+}
+
+.main-header {
+	background-color: $blue;
 }
 
 .wrapper {
@@ -43,15 +48,25 @@ html, body {
 // Headings
 
 %heading {
-	font-family: 'Raleway', helvetica, arial, sans-serif;
-	font-weight: 800;
+	font-family: 'Heebo', helvetica, arial, sans-serif;
+	font-weight: 400;
 	text-rendering: optimizeLegibility;
 	margin-bottom: $default-margin;
 	color: #333;
 }
 
-.heading-four, .heading-three {
+.heading__one, .heading-four, .heading-three {
 	@extend %heading;
+}
+
+.heading__one {
+	font-size: 2.188rem;
+}
+
+@media screen and (min-width: 768px) {
+	.heading__one {
+		font-size: 2.618rem;
+	}
 }
 
 // End headings
@@ -110,4 +125,137 @@ html, body {
 	margin: $default-margin 0;
 	display: block;
 	background-color: #333;
+}
+
+
+.ratings-5 {
+	background: url(../img/rating-stars.svg);
+	background-size: 100%;
+	width: 8.25rem;
+	height: 1.5rem;
+	display: block;
+}
+
+.ratings-4 {
+	@extend .ratings-5;
+	background-position-y: -2.125rem;
+}
+
+.ratings-3 {
+	@extend .ratings-5;
+	background-position-y: -4.25rem;
+}
+
+.ratings-2 {
+	@extend .ratings-5;
+	background-position-y: -6.375rem;
+}
+
+.ratings-1 {
+	@extend .ratings-5;
+	background-position-y: -8.5rem;
+}
+
+
+// Reviews iframe
+
+.reviews-logo {
+	@extend %logo-trustpilot;
+	width: 179px;
+	height: 20px;
+
+}
+
+.reviews__header {
+	padding-bottom: 2rem;
+}
+
+.reviews__iframe {
+	width: calc(100% - 4rem);
+	height: 100%;
+	position: absolute;
+	left: 2rem;
+	top: 13rem;
+}
+
+.review {
+	padding: 2rem 0;
+	border-bottom: 1px solid $blue;
+	position: relative;
+
+	&:last-child {
+		border-bottom: 0;
+	}
+}
+
+.review-name {
+	font-weight: 600;
+	margin-bottom: 1rem;
+	display: block;
+}
+
+.review-date {
+	position: absolute;
+	right:2rem;
+	top:0;
+	font-weight: 600;
+}
+
+// Buttons
+
+%btn {
+	display: inline-block;
+	font-weight: 200;
+	padding: 1rem 2rem;
+	color: #fff;
+	border: 0;
+	border-radius: 8rem;
+	box-shadow: 0px 1px 2px 0px rgba(228, 228, 228, 0.50);
+}
+
+.btn__primary {
+	@extend %btn;
+	background-color: #3498DB;
+	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition: background-color, 1s, linear;
+
+	&:hover {
+		background-color: darken(#3498DB, 25%);
+	}
+}
+
+
+// Modal
+
+.remodal {
+	max-width: 50%;
+	height: 1px;
+	min-height: 100%;
+	overflow: scroll;
+}
+
+@media screen and (max-width:768px) {
+
+	.remodal-wrapper {
+		padding: 0;
+	}
+
+	.remodal {
+		vertical-align: top;
+		height: 100%;
+		max-width: 100%;
+	}
+}
+
+//Logos
+
+%logo {
+	display: block;
+}
+
+%logo-trustpilot {
+	@extend %logo;
+	background: url("../img/trustpilot-logo.png") 0 0 no-repeat;
 }

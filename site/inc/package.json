@@ -1,0 +1,14 @@
+{
+  "name": "online-agent-reviews",
+  "version": "1.0.0",
+  "description": "An online estate agency comparison site",
+  "main": "/",
+  "scripts": {
+    "test": ""
+  },
+  "author": "Benjamin Gordon",
+  "license": "ISC",
+  "dependencies": {
+    "remodal": "^1.1.0"
+  }
+}

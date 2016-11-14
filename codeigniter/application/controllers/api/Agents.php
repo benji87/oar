@@ -16,7 +16,7 @@ class Agents extends REST_Controller
 	public function index_get()
 	{
 			
-		$parameters = $this->input->get(array('type', 'photos_floorplans_inc', 'viewings_package_offered'));
+		$parameters = $this->input->get(array('type', 'photos_floorplans_inc', 'viewings_package_offered', 'expert_local_agent', 'order_by'));
 
 		$data = $this->agents_model->get_agents($parameters);
 

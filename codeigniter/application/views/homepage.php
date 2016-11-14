@@ -1,6 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+<div class="row main-header">
+	<div class="col-md-12">
+		<div class="container">
+			<header class="container">
+				<h1>Hello</h1>
+			</header>
+		</div>
+	</div>
+</div>
 <div class="wrapper">
 	<div class="filter-container">
 		<a href="#" class="filter-close"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
@@ -8,9 +17,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<form class="filter">
 			<div class="filter-section">
 				<label>Order by:</label>
-				<select class="form-control">
-					<option>Highest rated</option>
-					<option>Cheapest listing fee</option>
+				<select name="order_by" class="form-control">
+					<option value="">Please select</option>
+					<option value="trustpilot_average">Highest rated</option>
+					<option value="base_price">Cheapest listing fee</option>
 				</select>
 			</div>
 			<div class="filter-section">
@@ -38,14 +48,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h4 class="heading-four">Features</h4>
 				<div class="checkbox">
 				  <label>
+				    <input class="filter-option" type="checkbox" name="expert_local_agent" value="1">
+					   Expert Local Agent
+				  </label>
+				</div>
+				<div class="checkbox">
+				  <label>
 				    <input class="filter-option" type="checkbox" name="photos_floorplans_inc" value="1">
-					   Photos &amp; Floorplans Included
+					   Free Photos &amp; Floorplans
 				  </label>
 				</div>
 				<div class="checkbox">
 				  <label>
 				    <input class="filter-option" type="checkbox" name="viewings_package_offered" value="1">
-					    Viewings package available
+					    Optional Viewings package
 				  </label>
 				</div>
 			</div>
@@ -81,7 +97,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</td>
 					<td>&pound;<?=number_format($agent['epc'],2)?></td>
 					<td><?=($agent['premium_listing'] == 0 ? 'Not offered' : '&pound;' . number_format($agent['premium_listing'], 2))?></td>
-					<td>trust score</td>
+					<td>
+						<span class="ratings-<?=round($agent['trustpilot_average'])?>"></span>
+						<?=$agent['trustpilot_total']?>
+						<a href="#reviews" class="cta" data-id="<?=$agent['id']?>" data-name="<?=$agent['name']?>" data-tpRating="<?=round($agent['trustpilot_average'])?>">Read reviews</a>
+					</td>
 				</tr>
 				<?php endforeach; ?>
 			</tbody>
@@ -112,6 +132,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	  </td>
 	  <td>&pound;{{epc}}</td>
 	  <td>{{#if premium_listing}}&pound;{{premium_listing}}{{else}}Not offered{{/if}}</td>
-	  <td>trust rating</td>
+	  <td>
+		  <span class="ratings-{{trustpilot_average}}"></span>
+		  {{trustpilot_total}}
+		  <a href="#reviews" class="cta" data-id="{{id}}" data-name="{{name}}" data-tpRating="{{trustpilot_total}}">Read reviews</a>
+	  </td>
   </tr>
+</script>
+
+
+<div class="remodal" data-remodal-id="reviews">
+	<button data-remodal-action="close" class="remodal-close"></button>
+	<h1 class="heading__one reviews__noData">Please close this modal and select an estate agent</h1>
+</div>
+<script id="modal-template" type="text/x-handlebars-template">
+	<div class="reviews">
+		<header class="reviews__header">
+			<h1 class="heading__one reviews__title">Reviews for {{eA}}<h3>
+			<button class="btn__primary reviews__btn">Visit {{eA}}</button>
+		</header>
+		<iframe class="reviews__iframe" src="/trustpilot-reviews/{{eAId}}" frameborder="0" height="100"></iframe>
+	</div>
 </script>

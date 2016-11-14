@@ -34,10 +34,13 @@
 		
 		public function get_urls()
 		{
-			$this->db->select('url');
+			$this->db->select('agent_id, url');
 			$this->db->from('trustpilot_urls');
 			$query = $this->db->get();
+			
 			return $query->result_array();
+			
+			
 		}
 		
 		

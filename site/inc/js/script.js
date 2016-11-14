@@ -36,7 +36,7 @@ $('.filter-btn').click(function()
 				var source   = $("#result-template").html();
 				var template = Handlebars.compile(source);
 				
-				var context = {name: item.name, link: item.link, base_price: item.base_price, base_price_london: item.base_price_london, photos_floorplans: checkValue(item.photos_floorplans), viewings: item.viewings, viewings_london: item.viewings_london, epc: checkValue(item.epc), premium_listing: checkValue(item.premium_listing)};
+				var context = {id: item.id, name: item.name, link: item.link, base_price: item.base_price, base_price_london: item.base_price_london, photos_floorplans: checkValue(item.photos_floorplans), viewings: item.viewings, viewings_london: item.viewings_london, epc: checkValue(item.epc), premium_listing: checkValue(item.premium_listing), trustpilot_average: Math.round(item.trustpilot_average), trustpilot_average_raw: item.trustpilot_average, trustpilot_total: item.trustpilot_total};
 				var html    = template(context);
 				
 				result.push(html);
@@ -51,11 +51,45 @@ $('.filter-btn').click(function()
 	})
 });
 
+
+$(".cta").click(function()
+{
+
+	$(".reviews__noData").hide();
+
+
+	var source = $('#modal-template').html();
+	var template = Handlebars.compile(source);
+
+
+
+	var id = $(this).data('id');
+	var name = $(this).data('name');
+	var tpRating = $(this).data('tprating');
+
+	var context = {eAId: id, eA: name, rating: tpRating};
+	var html    = template(context);
+
+	$('.remodal').prepend(html);
+	$('.reviews:last-child').remove();
+
+});
+
+$(document).on('closed', '.remodal', function (e)
+{
+
+	$(".reviews").empty();
+});
+
+
 //Prevents 0 having 2 decimal places for currency figures
-function checkValue(value) {
+function checkValue(value)
+{
 	if(value == 0) {
 		return false;
 	} else {
 		return value.toFixed(2);
 	}
 }
+
+

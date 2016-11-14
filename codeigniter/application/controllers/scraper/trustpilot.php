@@ -37,19 +37,19 @@
 					
 					//Grab all the user review details
 					$item['trustpilot_id'] = $review->attr['data-reviewmid'];
-					$item['name'] = $review->find('div.user-review-name', 0)->plaintext;
-					$item['rating'] = $review->find('meta[itemprop="ratingValue"]', 0)->attr['content'];
+					$item['name'] = trim($review->find('div.user-review-name', 0)->plaintext);
+					$item['rating'] = $this->get_star_rating($review->find('.star-rating', 0)->attr['class']);
 					$item['timestamp'] = $review->find('time.ndate', 0)->attr['datetime'];
 					$item['title'] = $review->find('a.review-title-link', 0)->plaintext;
 					$item['description'] = trim(htmlentities($review->find('div.review-body',0)->plaintext));
 					
+					$item['agent_id'] = $agent['agent_id'];
+					
 					$reviews[] = $item;
 				    
 				    array_push($review_ids, $item['trustpilot_id']);
-				    $i++;
 				    
 				}
-				
 			
 				//Check to see if there is a response
 				if(empty($review_ids))
@@ -78,6 +78,14 @@
 					}							
 				}
 			}
+		}
+		
+		private function get_star_rating($data)
+		{
+			$classes = explode(' ', $data);
+			$rating = explode('-', $classes[1]);
+			
+			return $rating[1];
 		}
 		
 	}

@@ -20,4 +20,13 @@
 			}
 		}
 		
+		public function put_total_rating()
+		{
+			$data = $this->Ratings_model->put_total_rating();
+			if($data)
+			{
+				echo json_encode(array('status' => 0, 'message' => 'Success'));
+			}
+		}
+		
 	}
